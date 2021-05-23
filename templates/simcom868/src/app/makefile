@@ -13,19 +13,19 @@ LIB_RESULE=$(MODULE_NAME).a
 
 #Two mothods#
 #First mothod#
-#S1 := $(wildcard *.c)
-#SOURCE:=$(S1)
+S1 := $(wildcard *.c)
+SOURCE:=$(S1)
 
 #Second mothod#
 #SOURCE := app_demo_other.c
 
-#示例中只有一个源文件，所以把源文件编译为main.o
-MAIN_SRC := main.c  
-MAIN_OBJ := main.o 
+#There is only one source file in the example, so compile the source file as main.o
+#MAIN_SRC := main.c  
+#MAIN_OBJ := main.o 
 
-#头文件目录设置
+#Header file directory settings
 LOCAL_INCLUDE := -I./
 
-#编译，生成.a文件
+#Compile and generate .a files
 include $(PROJ_HOME)/build/app_build.mak
 
