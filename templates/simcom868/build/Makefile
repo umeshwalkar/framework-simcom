@@ -14,9 +14,16 @@ include $(PROJ_HOME)/build/option.mak
 #��Ҫ�����ģ��
 TARGETS = $(SRC_OPEN_MODE_NAME)
 TARGGETS_LIB := $(TARGETS)
-ifeq ($(strip $(SRC_DIR)),src)
-#demo�еļ���ʾ��Ϊ���ļ�������Ҫ����Ϊ.a�ļ�
-TARGGETS_LIB := $(filter-out timer audio flash gpio uart system i2c sim other pwm interrupt tcptest watchdog gps application,$(TARGETS))
+
+SOURCESS := $(wildcard $(SRC_DIR)/$(TARGETS)/*.c)
+NO_OF_FILES := $(words $(SOURCESS))
+
+# if more than 2 files are present in src/application folder
+ifneq ($(NO_OF_FILES) , 2)
+	ifeq ($(strip $(SRC_DIR)),src)
+	#demo�еļ���ʾ��Ϊ���ļ�������Ҫ����Ϊ.a�ļ�
+	TARGGETS_LIB := $(filter-out timer audio flash gpio uart system i2c sim other pwm interrupt tcptest watchdog gps application,$(TARGETS))
+	endif
 endif
 
 LIB_OBJS:=$(foreach var,$(TARGGETS_LIB),$(OUTPUT_LIB_DIR)/$(var).a )
