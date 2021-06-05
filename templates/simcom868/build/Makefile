@@ -49,9 +49,12 @@ bin_clean:
 	rm -fr $(LIB_MAIN_OBJ)
 
 copy:
-	-mkdir $(subst /,\,$(BIN_DIR))
-	-mkdir $(subst /,\,$(LIB_DIR))
-	-mkdir $(subst /,\,$(LOG_DIR))
+	if not exist  $(subst /,\,$(BIN_DIR)) mkdir $(subst /,\,$(BIN_DIR))
+	if not exist  $(subst /,\,$(LIB_DIR)) mkdir $(subst /,\,$(LIB_DIR))
+	if not exist  $(subst /,\,$(LOG_DIR)) mkdir $(subst /,\,$(LOG_DIR))
+#	on Linux
+#	if [ ! -d "$(subst /,\,$(BIN_DIR))" ]; then mkdir $(subst /,\,$(BIN_DIR)); fi
+
 #	cp -f $(CORE_DIR)\$(SRC_SCAT_FILE) $(OUTPUT_BIN_DIR)\$(SCATTER_FILE)
 
 #$(LIB_MAIN_OBJ):src\main.c
